@@ -85,6 +85,15 @@ http://localhost/path-to-project/index.php
 
 ---
 
+## Notes
+
+- The tool is intended for **designers only**.  
+- It is **not secure** for production use.  
+- Always test generated styles in a safe environment before deploying to any live site.
+- When you have finished, it is important to **test your Style within eXeLearning** to ensure that its CSS code does not affect the application interface.
+
+---
+
 ## License
 
 This project is licensed under the **AGPL**. You may freely use, modify, and distribute it under the terms of the Affero General Public License.
@@ -121,10 +130,3 @@ The following third-party resources are included in this project:
   License: AGPL (same as this project)
 
 > All other files in this project were created by [@ignaciogros](https://github.com/ignaciogros) and are licensed under AGPL.
-
-## Notes
-
-- The tool is intended for **designers only**.  
-- It is **not secure** for production use.  
-- Always test generated styles in a safe environment before deploying to any live site.
-- When you have finished, it is important to **test your Style within eXeLearning** to ensure that its CSS code does not affect the application interface.
