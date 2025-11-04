@@ -1,5 +1,5 @@
 <?php 
-    $defaultIndexFile = 'las-estrategias-lectoras.html';
+    $defaultIndexFile = 'index.html';
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
