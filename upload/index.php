@@ -188,8 +188,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="upload">
 <div id="sdHeader">
-    <a href="../" class="btn btn-outline-light btn-sm mw" id="_blank">Style Designer</a>
-    <a href="../files/example.zip" class="btn btn-link btn-sm" id="exampleLnk" download>Example style</a>
+    <span id="actionsPanel">
+        <a href="../files/example.zip" class="btn btn-link btn-sm" id="exampleLnk" download>Example style</a>
+    </span>
 </div>
 <div class="container p-4">
     <h1 class="h5 mb-4 visually-hidden">Upload .zip files</h1>
@@ -203,6 +204,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endforeach; ?>
     <?php endif; ?>
 
+    <!-- Instructions -->
+    <?php if (!isset($valid) || !$valid) { ?>
+    <ol class="mt-4 mb-4 text-muted">
+        <li>Open a content file (.elpx) with eXeLearning 3 and export it in these formats: Website, Single page, SCORM 1.2.</li>
+        <li>Then select the <strong>3 .zip files</strong> and click on "Upload and process."</li>
+        <li>Do not change the default names assigned by eXeLearning (they end with _page.zip, _scorm.zip, and _web.zip).</li>
+    </ol>
     <!-- Upload form -->
     <form method="post" enctype="multipart/form-data">
         <div class="mb-3">
@@ -212,14 +220,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <button type="submit" class="btn btn-primary">Upload and process</button>
     </form>
-
-    <!-- Instructions -->
-    <ol class="mt-4 text-muted">
-        <li>Open a content file with eXeLearning 3 and export it in these formats: Website, Single page, SCORM 1.2.</li>
-        <li>Then select the <strong>3 .zip files</strong> and click on "Upload and process."</li>
-        <li>When the process is finished, click on "Style Designer" to see the different views.</li>
-        <li>Do not change the default names assigned by eXeLearning (they end with _page.zip, _scorm.zip, and _web.zip).</li>
-    </ol>
+    <?php } else { ?>
+        <ol class="mt-4 mb-4 text-muted">
+            <li>Open the "theme" folder at the root of your project.</li>
+            <li>Click on "Style Designer" to see the different export types.</li>
+            <li>Start editing (style.css), etc.</li>
+        </ol>
+        <p>
+            <a href="../" class="btn btn-primary me-1">Style Designer</a>
+            <a href="./" class="btn btn-secondary">Replace uploaded files</a>
+        </p>
+    <?php } ?>
 </div>
 <script>
     document.getElementById('zipFiles').addEventListener('change', function() {

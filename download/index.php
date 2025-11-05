@@ -99,17 +99,18 @@ if (isset($_POST['download'])) {
     <head>
         <meta name="robots" content="noindex">
         <meta charset="utf-8">
-        <title>Uploader | Style Designer</title>
+        <title>Finish / Restart | Style Designer</title>
         <link rel="icon" href="../files/favicon.ico">
         <link rel="stylesheet" href="../files/css/bootstrap.min.css">
         <script src="../files/js/jquery.min.js"></script>
         <script src="../files/js/bootstrap.bundle.min.js" defer></script>
         <link rel="stylesheet" href="../files/css/style-designer.css">
     </head>
-    <body class="upload">
+    <body class="finish">
         <div id="sdHeader">
-            <a href="../" class="btn btn-outline-light btn-sm mw" id="_blank">Style Designer</a>
-            <a href="../files/example.zip" class="btn btn-link btn-sm" id="exampleLnk" download>Example style</a>
+            <span id="actionsPanel">
+                <a href="../files/example.zip" class="btn btn-link btn-sm" id="exampleLnk" download>Example style</a>
+            </span>
         </div>
         <div class="container p-4">
             <h1 class="h5 mb-4 visually-hidden">Download style</h1>
@@ -123,6 +124,7 @@ if (isset($_POST['download'])) {
             </ol>
             <form method="post">
                 <button type="submit" name="download" class="btn btn-primary me-1">Download Style</button>
+                <a href="../" class="btn btn-outline-primary me-1">Go back to the Style Designer</a>
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#confirmModal">Delete all files and create a new Style</button>
             </form>
             <form id="deleteForm" method="post" style="display:none;">

@@ -20,25 +20,22 @@ iframe {
     width: 100%;
     height: calc(100vh - 52px);
 }
-#done {
-    float: right;
-}
-#_blank {
-    float: right;
-}
 #_blank img{
     position: relative;
-    top: -2px;
+    top: -1px;
+}
+#actionsPanel {
+    float: right;
 }
 #exampleLnk {
-    float: right;
     color: #FFF;
     text-decoration: none;
     margin-right: 1em;
     opacity: .7;
 }
-.index #done + #_blank + #exampleLnk {
-    margin-right: 0;
+.index #exampleLnk {
+    position: relative;
+    top: -2px;
 }
 #exampleLnk:hover,
 #exampleLnk:focus {
@@ -51,8 +48,14 @@ iframe {
     background-color: #0ba1a1;
     border-color: #0ba1a1;
 }
+.btn-outline-primary {
+    color: #0ba1a1;
+    border-color: #0ba1a1;
+}
 .btn-primary:hover,
-.btn-primary:focus {
+.btn-primary:focus, 
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
     background-color: #107275;
     border-color: #107275;
 }

@@ -37,12 +37,14 @@
                 <button type="button" class="btn btn-light" id="page">Single page</button>
                 <button type="button" class="btn btn-light" id="scorm">SCORM 1.2</button>
             </div>
-            <a href="./download" class="btn btn-outline-light btn-sm mw" id="done">Done</a>
-            <button type="button" class="btn btn-text btn-sm" id="_blank" title="Open in new window"><img src="files/img/new-window.svg" width="24" height="24" alt="New window"><span class="visually-hidden">New window</span></button>
-            <?php } else { ?>
-            <a href="./upload" class="btn btn-outline-light btn-sm" id="_blank">Upload</a>
             <?php } ?>
-            <a href="files/example.zip" class="btn btn-link btn-sm" id="exampleLnk" download>Example style</a>
+            <span id="actionsPanel">
+                <?php if (is_dir('contents')) { ?>
+                    <button type="button" class="btn btn-text btn-sm" id="_blank" title="Open in new window"><img src="files/img/new-window.svg" width="24" height="24" alt="New window"><span class="visually-hidden">New window</span></button>
+                    <a href="./download" class="btn btn-primary btn-sm mw me-2" id="done">Finish / Restart</a>
+                <?php } ?>
+                <a href="files/example.zip" class="btn btn-link btn-sm" id="exampleLnk" download>Example style</a>
+            </span>
         </div>
         <?php if (is_dir('contents')) { ?>
             <?php
@@ -65,9 +67,10 @@
         <div class="container p-4">
             <h1 class="visually-hidden">Style Designer</h1>
             <div class="alert alert-info">
-                No contents available…
+                No contents available… Just click on "Start" and follow the instructions.
             </div>
-            <p>Just click on "Upload" and follow the instructions.</p>
+            <p></p>
+            <p><a href="./upload" class="btn btn-primary mw" id="upload" class="">Start</a></p>
         </div>
         <?php } ?>
     </body>
