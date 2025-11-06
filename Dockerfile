@@ -1,4 +1,4 @@
-# Use official PHP image with Apache
+# Use official PHP image with Apache 
 FROM php:8.2-apache
 
 # Copy project files to Apache document root
@@ -21,5 +21,15 @@ COPY custom-php.ini /usr/local/etc/php/conf.d/
 
 # Install required extensions
 RUN apt-get update && apt-get install -y \
-        zip unzip libzip-dev \
-    && docker-php-ext-install zip
+    zip unzip libzip-dev dos2unix \
+  && docker-php-ext-install zip
+
+# Add entrypoint script to show message and start Apache
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+# Convert line endings and set execution permission
+RUN dos2unix /usr/local/bin/docker-entrypoint.sh \
+  && chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["apache2-foreground"]
