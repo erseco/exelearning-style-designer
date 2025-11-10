@@ -141,20 +141,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             copyDir($webThemeDir, $themeTargetDir);
         }
 
+        // eXeLearning v3.0.0 compatibility
+        // Define target files
+        $isV3 = false;
+        $defaultJs = $themeTargetDir . '/default.js';
+        $defaultCss = $themeTargetDir . '/content.css';
+        $styleJs = $themeTargetDir . '/style.js';
+        $styleCss = $themeTargetDir . '/style.css';
+        // Rename files only if style.js and style.css do not already exist
+        if (!file_exists($styleJs) && file_exists($defaultJs)) {
+            rename($defaultJs, $styleJs);
+            $isV3 = true;
+        }
+        if (!file_exists($styleCss) && file_exists($defaultCss)) {
+            rename($defaultCss, $styleCss);
+            $isV3 = true;
+        }
+
         // Replace HTML script and CSS paths
         $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($contentsDir));
         foreach ($iterator as $file) {
             if ($file->isFile() && pathinfo($file, PATHINFO_EXTENSION) === 'html') {
                 $content = file_get_contents($file);
 
+                $styleJsFile = 'style';
+                $styleCssFile = 'style';
+                // eXeLearning v3.0.0 compatibility
+                if ($isV3) {
+                    $styleJsFile = 'default';
+                    $styleCssFile = 'content';
+                }
+
                 $replacements = [
-                    '<script src="../theme/style.js"> </script>' =>
+                    '<script src="../theme/'.$styleJsFile.'.js"> </script>' =>
                         '<script>document.write(\'<script src="../../../theme/style.js?v=\'+Date.now()+\'"><\/script>\');</script>',
-                    '<link rel="stylesheet" href="../theme/style.css">' =>
+                    '<link rel="stylesheet" href="../theme/'.$styleCssFile.'.css">' =>
                         '<script>document.write(\'<link rel="stylesheet" href="../../../theme/style.css?v=\'+Date.now()+\'">\');</script>',
-                    '<script src="theme/style.js"> </script>' =>
+                    '<script src="theme/'.$styleJsFile.'.js"> </script>' =>
                         '<script>document.write(\'<script src="../../theme/style.js?v=\'+Date.now()+\'"><\/script>\');</script>',
-                    '<link rel="stylesheet" href="theme/style.css">' =>
+                    '<link rel="stylesheet" href="theme/'.$styleCssFile.'.css">' =>
                         '<script>document.write(\'<link rel="stylesheet" href="../../theme/style.css?v=\'+Date.now()+\'">\');</script>',
                 ];
 
