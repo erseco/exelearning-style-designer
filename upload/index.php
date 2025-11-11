@@ -12,6 +12,26 @@ $themeTargetDir = $rootDir . '/theme';
 $messages = [];  // Feedback messages to display in HTML
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if (isset($_GET['useFixtures'])) {
+        // Path to the fixtures
+        $fixtureDir = realpath(__DIR__ . '/../files/fixtures');
+        $fixtureFiles = [
+            $fixtureDir . '/example_page.zip',
+            $fixtureDir . '/example_scorm.zip',
+            $fixtureDir . '/example_web.zip'
+        ];
+
+        // Simulate $_FILES structure
+        $_FILES['zipFiles'] = [
+            'name' => array_map('basename', $fixtureFiles),
+            'type' => array_fill(0, 3, 'application/zip'),
+            'tmp_name' => $fixtureFiles,
+            'error' => array_fill(0, 3, UPLOAD_ERR_OK),
+            'size' => array_map('filesize', $fixtureFiles)
+        ];
+    }
+
     $allowedSuffixes = ['_page.zip', '_scorm.zip', '_web.zip'];
     $folderNames = ['page', 'scorm', 'web'];
     $valid = true;
@@ -110,7 +130,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if ($zip->open($tmpPath) === TRUE) {
                         $zip->extractTo($targetFolder);
                         $zip->close();
-                        unlink($tmpPath);
+                        // Do NOT delete fixture ZIPs
+                        if (strpos($tmpPath, '/fixtures/') === false && file_exists($tmpPath)) {
+                            unlink($tmpPath);
+                        }
                     } else {
                         $messages[] = ['type' => 'danger', 'text' => 'Failed to unzip file: ' . $fileName];
                     }
@@ -243,7 +266,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="file" class="form-control" name="zipFiles[]" id="zipFiles" multiple required>
             <div class="form-text">Files must end with _page.zip, _scorm.zip or _web.zip</div>
         </div>
-        <button type="submit" class="btn btn-primary">Upload and process</button>
+        <button type="submit" class="btn btn-primary me-1">Upload and process</button>
+        <button type="button" id="useFixturesBtn" class="btn btn-secondary">Use sample contents</button>
     </form>
     <?php } else { ?>
         <ol class="mt-4 mb-4 text-muted">
@@ -258,36 +282,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php } ?>
 </div>
 <script>
-    document.getElementById('zipFiles').addEventListener('change', function() {
-        const files = Array.from(this.files);
-        const requiredSuffixes = ['_page.zip', '_scorm.zip', '_web.zip'];
-        let suffixesFound = [];
-        const errorWrapper = $("#wrongFilesError");
+    const zipFiles = document.getElementById('zipFiles');
+    if (zipFiles) {
+        zipFiles.addEventListener('change', function() {
+            const files = Array.from(this.files);
+            const requiredSuffixes = ['_page.zip', '_scorm.zip', '_web.zip'];
+            let suffixesFound = [];
+            const errorWrapper = $("#wrongFilesError");
 
-        let errorMsg = ''
-        files.forEach(file => {
-            if (!file.name.endsWith('.zip')) {
-                errorMsg = 'Only .zip files are allowed.';
-                this.value = '';
-                return;
-            }
-            requiredSuffixes.forEach(suffix => {
-                if (file.name.endsWith(suffix)) suffixesFound.push(suffix);
+            let errorMsg = ''
+            files.forEach(file => {
+                if (!file.name.endsWith('.zip')) {
+                    errorMsg = 'Only .zip files are allowed.';
+                    this.value = '';
+                    return;
+                }
+                requiredSuffixes.forEach(suffix => {
+                    if (file.name.endsWith(suffix)) suffixesFound.push(suffix);
+                });
             });
-        });
 
-        if (files.length !== 3 || new Set(suffixesFound).size !== 3) {
-            if (errorMsg == '') errorMsg = 'You must select exactly 3 ZIP files with the correct suffixes (_page.zip, _scorm.zip, _web.zip).';
-            this.value = '';
-        }
-        if (errorMsg != '') {
-            if (errorWrapper.length == 0) {
-                $('form').before('<div id="wrongFilesError" class="alert alert-danger">' + errorMsg + '</div>');
-            } else {
-                errorWrapper.html(errorMsg);
+            if (files.length !== 3 || new Set(suffixesFound).size !== 3) {
+                if (errorMsg == '') errorMsg = 'You must select exactly 3 ZIP files with the correct suffixes (_page.zip, _scorm.zip, _web.zip).';
+                this.value = '';
             }
-        }
-    });
+            if (errorMsg != '') {
+                if (errorWrapper.length == 0) {
+                    $('form').before('<div id="wrongFilesError" class="alert alert-danger">' + errorMsg + '</div>');
+                } else {
+                    errorWrapper.html(errorMsg);
+                }
+            }
+        });
+    }
+</script>
+<script>
+    const useFixturesBtn = document.getElementById('useFixturesBtn');
+    if (useFixturesBtn) {
+        useFixturesBtn.addEventListener('click', function() {
+            $('ol').before('<p class="alert alert-info">This may take a few seconds...</p>').hide();
+            $('form').hide();
+            // Post with no files
+            fetch(window.location.href + '?useFixtures=1', {
+                method: 'POST'
+            })
+            .then(res => res.text())
+            .then(html => {
+                document.open();
+                document.write(html);
+                document.close();
+            })
+            .catch(err => alert('Error processing fixtures: ' + err));
+        });
+    }
 </script>
 </body>
 </html>

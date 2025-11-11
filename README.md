@@ -104,7 +104,7 @@ This project is licensed under the **AGPL**. You may freely use, modify, and dis
 
 The following third-party resources are included in this project:
 
-- **Example content:** `leer-para-aprender.elpx`
+- **Example content:** `files/fixtures/leer-para-aprender.elpx`
   Used to create screenshots of Styles in eXeLearning 3.
   Original content created for [CEDEC](https://cedec.intef.es/).
   License: [Creative Commons BY-SA](https://creativecommons.org/licenses/by-sa/3.0/)
