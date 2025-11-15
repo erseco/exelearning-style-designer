@@ -16,8 +16,10 @@
                 init : function(){
                     this.viewer = $("#viewer");
                     $('.btn-group .btn').on('click', function(){
-                        if (this.id == 'page' || '<?php echo $defaultIndexFile; ?>' == 'index.html') sd.viewer.attr('src', 'contents/' + this.id + '/index.html?v='+ new Date());
-                        else sd.viewer.attr('src', 'contents/' + this.id + '/html/<?php echo $defaultIndexFile; ?>?v='+ new Date());
+                        var date = new Date();
+                        date = date.getFullYear() + ("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) + ("0" + date.getHours() ).slice(-2) + ("0" + date.getMinutes()).slice(-2) + ("0" + date.getSeconds()).slice(-2);
+                        if (this.id == 'page' || '<?php echo $defaultIndexFile; ?>' == 'index.html') sd.viewer.attr('src', 'contents/' + this.id + '/index.html?v='+ date);
+                        else sd.viewer.attr('src', 'contents/' + this.id + '/html/<?php echo $defaultIndexFile; ?>?v='+ date);
                     });
                     $("button#_blank").on('click', function(){
                         window.open(sd.viewer.attr('src'));
