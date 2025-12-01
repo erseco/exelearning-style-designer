@@ -80,7 +80,7 @@ You will see two options:
   - A SCORM 1.2 package
 - **Use the sample contents** (the easiest way to start)
 
-If you choose to upload your own exports, make sure **all export preferences** (page counter, search box, etc.) are enabled. This ensures full compatibility with your style.
+If you choose to upload your own exports, make sure **all export preferences** (page counter, search box, etc.) are enabled. This way, your exports will include all optional elements, allowing you to ensure your style is fully compatible with them.
 
 ---
 
