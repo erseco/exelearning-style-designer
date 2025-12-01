@@ -17,26 +17,6 @@ It does not include the necessary security measures. This tool is intended solel
 
 ---
 
-## How to Use
-
-1. Export your eXeLearning project as:
-   - A **Website**
-   - A **SCORM 1.2**
-   - A **Single page**
-   using the style you want to customize.
-
-2. Make sure to enable all project properties (search box, page counter, etc.) to ensure your style remains compatible with those features.
-
-3. Open **eXeLearning Style Designer**.
-
-4. Upload the three exported `.zip` files.
-
-5. Edit the `style.css` and `style.js` files located in the `theme` folder as needed.
-
-6. When you finish editing, click **"Done"** to generate your customized style package.
-
----
-
 ## Installation
 
 ### 1. Docker (Recommended)
@@ -82,6 +62,89 @@ memory_limit = 128M
 ```
 http://localhost/path-to-project/index.php
 ```
+
+---
+
+## How to Use — Quick Start Guide
+
+### 1. Getting Started
+
+1. Download and install the tool.
+2. Click **Start** to begin.
+
+You will see two options:
+
+- **Upload three exported contents** in ZIP format:
+  - A website
+  - A single page
+  - A SCORM 1.2 package
+- **Use the sample contents** (the easiest way to start)
+
+If you choose to upload your own exports, make sure **all export preferences** (page counter, search box, etc.) are enabled. This ensures full compatibility with your style.
+
+---
+
+### 2. Loading the Designer
+
+Once the contents are loaded, you can open the **Style Designer**.
+
+At the top of the page, you will find three preview buttons:
+
+- **Website**
+- **Single page**
+- **SCORM 1.2**
+
+Click each one to see how your style will look in that export format.
+
+---
+
+### 3. Editing Your Style
+
+All editable files are located in the **theme** folder inside the application directory.
+
+You can modify:
+
+- `style.css`
+- `style.js`
+- Any other files required by your design
+
+#### Images
+Place all required images in `/theme/img`.
+If you add `favicon.png` or `favicon.ico` in this folder, exports will use it instead of the default eXeLearning favicon.
+
+#### Fonts
+Add custom fonts to `/theme/fonts`.
+
+#### iDevice Icons
+The folder `/theme/icons` contains the default iDevice icons.
+It is recommended to work with these during development and replace them with your own collection once the style is complete.
+
+---
+
+### 4. Finalizing Your Style
+
+When you're ready, click **Finish / Restart** and follow the instructions:
+
+1. Edit your style’s `config.xml` file.
+2. Download your style as a ZIP file.
+3. Import the ZIP into eXeLearning.
+
+If you want to start from scratch, go to **Finish / Restart** and select **Delete all files and create a new Style**.
+
+---
+
+### 5. Testing and Licensing
+
+- Test your style in eXeLearning to ensure everything works correctly and your CSS does not interfere with the application’s presentation.
+- Respect all third-party licenses for images, fonts, or any other assets you use.
+- Add any required attributions or legal information directly into your style’s `config.xml`.
+
+---
+
+### 6. Additional Resources
+
+- Click **Example style** in the application to download an example style.
+- eXeLearning styles official documentation: https://github.com/exelearning/exelearning/blob/main/doc/development/styles.md
 
 ---
 
