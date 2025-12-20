@@ -1,3 +1,5 @@
+[Versión en español](README_es.md)
+
 # eXeLearning Style Designer
 
 **License:** AGPL
@@ -6,7 +8,7 @@
 
 eXeLearning Style Designer is a tool designed to facilitate the creation of custom styles for **eXeLearning 3**.
 
-With this tool, you can easily edit and customize the look and feel of your eXeLearning projects by modifying style files and packaging them for distribution.
+With this tool, you can easily edit and customize the look and feel of your eXeLearning projects by creating new styles and packaging them for distribution.
 
 ---
 
@@ -116,14 +118,14 @@ Place all required images in `/theme/img`.
 If you add `favicon.png` or `favicon.ico` in this folder, exports will use it instead of the default eXeLearning favicon.
 
 #### Fonts
-Add custom fonts to `/theme/fonts`.
+You can add custom fonts to `/theme/fonts`.
 
 #### iDevice Icons
 The folder `/theme/icons` contains the default iDevice icons.
 It is recommended to work with these during development and replace them with your own collection once the style is complete.
 
 #### Example CSS Files
-The folder `/files/example_css_files` contains several CSS files similar to the one used by the included style. They may serve as a useful starting point for your own design.
+The folder `/files/example_css_files` contains several CSS files similar to the one used by the included style. They may serve as a useful starting point for your design.
 
 ---
 
@@ -158,7 +160,6 @@ If you want to start from scratch, go to **Finish / Restart** and select **Delet
 
 - The tool is intended for **designers only**.
 - It is **not secure** for production use.
-- Always test generated styles in a safe environment before deploying to any live site.
 - When you have finished, it is important to **test your Style within eXeLearning** to ensure that its CSS code does not affect the application interface.
 
 ---
