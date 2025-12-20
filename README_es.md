@@ -205,4 +205,4 @@ Los siguientes recursos de terceros están incluidos en este proyecto:
   Fuente: [Google Fonts](https://fonts.google.com/specimen/Open+Sans)
   Licencia: Apache License, Version 2.0
 
-> Todos los demás archivos en este proyecto fueron creados por [@ignaciogros](https://github.com/ignaciogros) y tienen licencia AGPL.
+> Todos los demás archivos del proyecto han sido creados por [@ignaciogros](https://github.com/ignaciogros) y tienen licencia AGPL.
