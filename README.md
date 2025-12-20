@@ -12,7 +12,7 @@ With this tool, you can easily edit and customize the look and feel of your eXeL
 
 ## Important Notices
 
-⚠️ **Intended audience notice**
+ℹ️ **Intended audience notice**
 This tool is **not intended for non-technical users**. It is designed for web designers and developers. To use it properly, you should be able to install and configure a PHP project and work comfortably with CSS (and preferably JavaScript).
 
 ⚠️ **This application must never be used in production.**
@@ -121,6 +121,9 @@ Add custom fonts to `/theme/fonts`.
 #### iDevice Icons
 The folder `/theme/icons` contains the default iDevice icons.
 It is recommended to work with these during development and replace them with your own collection once the style is complete.
+
+#### Example CSS Files
+The folder `/files/example_css_files` contains several CSS files similar to the one used by the included style. They may serve as a useful starting point for your own design.
 
 ---
 
