@@ -14,10 +14,12 @@ With this tool, you can easily edit and customize the look and feel of your eXeL
 
 ## Important Notices
 
-ℹ️ **Intended audience notice**
+ℹ️ **Intended audience notice:**
+
 This tool is **not intended for non-technical users**. It is designed for web designers and developers. To use it properly, you should be able to install and configure a PHP project and work comfortably with CSS (and preferably JavaScript).
 
 ⚠️ **This application must never be used in production.**
+
 It does not include the necessary security measures. This tool is intended solely for designers to simplify the creation of styles for eXeLearning 3.
 
 ---

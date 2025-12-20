@@ -14,10 +14,12 @@ Con esta herramienta puedes editar y personalizar fácilmente la apariencia de t
 
 ## Avisos importantes
 
-ℹ️ **Aviso sobre el público objetivo**
+ℹ️ **Aviso sobre el público objetivo:**
+
 Esta herramienta **está destinada a usuarios técnicos**. Está diseñada para diseñadores y desarrolladores web. Para usarla correctamente debes ser capaz de instalar y configurar un proyecto PHP y trabajar cómodamente con CSS (y preferiblemente JavaScript).
 
 ⚠️ **Esta aplicación nunca se debe usar en producción.**
+
 No incluye las medidas de seguridad necesarias. Esta herramienta está destinada únicamente a diseñadores para simplificar la creación de estilos para eXeLearning 3.
 
 ---
